@@ -10,22 +10,20 @@ namespace Nunit_Singleton_MultiThreadeded_Broken
     {
         private static readonly object Lock = new object();
         private static Singleton ActiveSingleton = null;
-        public int valueX,
-                   valueY;
+        public int valueX;
 
-        private Singleton(int x, int y)
+        private Singleton(int x)
         {
             valueX = x;
-            valueY = y;
             testCollector.GetCurrentInstance();
-            testCollector.AddToTotal(x + y);
+            testCollector.AddToTotal(x);
         }
 
-        public static Singleton NewInstance(int x, int y)
+        public static Singleton NewInstance(int x)
         {
             if (ActiveSingleton == null)
             {
-                ActiveSingleton = new Singleton(x, y);
+                ActiveSingleton = new Singleton(x);
             }
             return ActiveSingleton;
         }
