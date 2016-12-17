@@ -9,19 +9,17 @@ namespace Nunit_Singleton_MultiThreadeded_Fixed
     public class Singleton
     {
         private static readonly object Lock = new object();
-        private static volatile Singleton ActiveSingleton = null;
-        public volatile int valueX,
-                   valueY;
+        private static Singleton ActiveSingleton = null;
+        public int valueX;
 
-        private Singleton(int x, int y)
+        private Singleton(int x)
         {
             valueX = x;
-            valueY = y;
             testCollector.GetCurrentInstance();
-            testCollector.AddToTotal(x + y);
+            testCollector.AddToTotal(x);
         }
 
-        public static Singleton NewInstance(int x, int y)
+        public static Singleton NewInstance(int x)
         {
             if (ActiveSingleton == null)
             {
@@ -29,7 +27,7 @@ namespace Nunit_Singleton_MultiThreadeded_Fixed
                 {
                     if (ActiveSingleton == null)
                     {
-                        ActiveSingleton = new Singleton(x, y);
+                        ActiveSingleton = new Singleton(x);
                     }
                 }
             }

@@ -14,8 +14,8 @@ namespace Nunit_Singleton_MultiThreadeded_Fixed
         public void SingletonCreationTest()
         {
             testCollector.newInstance();
-            Thread T1 = new Thread(() => Singleton.NewInstance(1, 0));
-            Thread T2 = new Thread(() => Singleton.NewInstance(10, 0));
+            Thread T1 = new Thread(() => Singleton.NewInstance(1));
+            Thread T2 = new Thread(() => Singleton.NewInstance(10));
             Thread.Sleep(10);
             T1.Start();
             T2.Start();
