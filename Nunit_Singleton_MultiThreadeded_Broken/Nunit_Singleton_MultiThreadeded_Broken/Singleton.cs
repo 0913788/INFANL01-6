@@ -8,7 +8,6 @@ namespace Nunit_Singleton_MultiThreadeded_Broken
 {
     public class Singleton
     {
-        private static readonly object Lock = new object();
         private static Singleton ActiveSingleton = null;
         public int valueX;
 
